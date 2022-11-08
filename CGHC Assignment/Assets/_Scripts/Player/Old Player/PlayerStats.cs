@@ -2,17 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
     [Header("Assignables")]
-    [SerializeField] private GameObject deathChunkParticle;
-    [SerializeField] private GameObject deathBloodParticle;
+    [SerializeField] public GameObject deathChunkParticle;
+    [SerializeField] public GameObject deathBloodParticle;
 
     [Header("Settings")]
-    [SerializeField] private float maxHealth;
+    [SerializeField] public float maxHealth;
 
-    private float currentHealth;
+    public float currentHealth;
 
     private void Start()
     {
@@ -26,6 +27,7 @@ public class PlayerStats : MonoBehaviour
         if (currentHealth <= 0)
         {
             Die();
+            SceneManager.LoadScene(2);
         }
     }
 
