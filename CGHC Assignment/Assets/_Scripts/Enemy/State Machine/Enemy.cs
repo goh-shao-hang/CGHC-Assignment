@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : Entity
+public class Enemy : Entity, IDamageable
 {
     [Header("Base Data")]
     public D_Enemy enemyData;
@@ -22,7 +22,6 @@ public class Enemy : Entity
     private float currentStunResistance;
     private float lastDamageTime;
     
-
     protected bool isStunned;
     protected bool isDead;
 
@@ -79,7 +78,7 @@ public class Enemy : Entity
 
     public virtual bool CheckPlayerInMaxAggroRange()
     {
-        return Physics2D.Raycast(playerCheck.position, baseGO.transform.right, enemyData.maxAggroDistance, enemyData.whatIsPlayer);
+        return Physics2D.OverlapCircle(playerCheck.position, enemyData.maxAggroDistance, enemyData.whatIsPlayer);
     }
 
     public virtual bool CheckPlayerInCloseRangeAction()
