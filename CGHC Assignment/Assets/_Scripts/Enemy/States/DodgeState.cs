@@ -20,9 +20,9 @@ public class DodgeState : EnemyState
     {
         base.DoChecks();
 
-        performCloseRangeAction = enemy.PlayerInCloseRangeAction;
-        isPlayerInMaxAggroRange = enemy.PlayerInMaxAggroRange;
-        isGrounded = enemy.IsGrounded;
+        performCloseRangeAction = enemy.CheckPlayerInCloseRangeAction();
+        isPlayerInMaxAggroRange = enemy.CheckPlayerInMaxAggroRange();
+        isGrounded = enemy.CheckGround();
     }
 
     public override void Enter()

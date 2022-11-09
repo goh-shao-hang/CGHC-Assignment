@@ -9,6 +9,7 @@ public class IdleState : EnemyState
     protected bool flipAfterIdle;
     protected float idleTime;
     protected bool isIdleTimeOver;
+    protected bool isPlayerInMinAggroRange;
 
     public IdleState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, D_IdleState stateData) : base(entity, stateMachine, animBoolName)
     {
@@ -40,6 +41,17 @@ public class IdleState : EnemyState
 
         if (Time.time > startTime + idleTime)
             isIdleTimeOver = true;
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+    }
+
+    public override void DoChecks()
+    {
+        base.DoChecks();
+        isPlayerInMinAggroRange = enemy.CheckPlayerInMinAggroRange();
     }
 
     public void SetFlipAfterIdle(bool flip)
