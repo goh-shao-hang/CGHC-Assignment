@@ -22,7 +22,7 @@ public class LookForPlayerState : EnemyState
     {
         base.DoChecks();
 
-        isPlayerInMinAggroRange = enemy.CheckPlayerInMinAggroRange();
+        isPlayerInMinAggroRange = enemy.PlayerInMinAggroRange;
     }
 
     public override void Enter()

@@ -33,11 +33,11 @@ public class E1_PlayerDetectedState : PlayerDetectedState
         {
             stateMachine.ChangeState(enemy1.chargeState);
         }
-        else if (!isPlayerInMaxAggroRange)
+        else if (!enemy.PlayerInMaxAggroRange)
         {
             stateMachine.ChangeState(enemy1.lookForPlayerState);
         }
-        else if (!isDetectingLedge)
+        else if (enemy.LedgeDetected)
         {
             enemy1.Flip();
             stateMachine.ChangeState(enemy1.moveState);

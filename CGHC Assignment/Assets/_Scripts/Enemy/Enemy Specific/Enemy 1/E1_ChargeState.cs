@@ -34,13 +34,13 @@ public class E1_ChargeState : ChargeState
         {
             stateMachine.ChangeState(enemy1.meleeAttackState);
         }
-        else if (!isDetectingLedge || isDetectingWall)
+        else if (enemy.LedgeDetected || enemy.WallDetected)
         {
             stateMachine.ChangeState(enemy1.lookForPlayerState);
         }
         else if (isChargeTimeOver)
         {
-            if (isPlayerInMinAggroRange)
+            if (enemy.PlayerInMaxAggroRange)
             {
                 stateMachine.ChangeState(enemy1.playerDetectedState);
             }

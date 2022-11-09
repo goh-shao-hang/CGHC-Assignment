@@ -21,9 +21,9 @@ public class StunState : EnemyState
     {
         base.DoChecks();
 
-        isGrounded = enemy.CheckGround();
-        performCloseRangeAction = enemy.CheckPlayerInCloseRangeAction();
-        isPlayerInMinAggroRange = enemy.CheckPlayerInMinAggroRange();
+        isGrounded = enemy.IsGrounded;
+        performCloseRangeAction = enemy.PlayerInCloseRangeAction;
+        isPlayerInMinAggroRange = enemy.PlayerInMinAggroRange;
     }
 
     public override void Enter()

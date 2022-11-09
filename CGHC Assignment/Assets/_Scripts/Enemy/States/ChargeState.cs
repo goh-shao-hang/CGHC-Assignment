@@ -6,9 +6,6 @@ public class ChargeState : EnemyState
 {
     protected D_ChargeState stateData;
 
-    protected bool isPlayerInMinAggroRange;
-    protected bool isDetectingLedge;
-    protected bool isDetectingWall;
     protected bool isChargeTimeOver;
     protected bool performCloseRangeAction;
 
@@ -49,9 +46,6 @@ public class ChargeState : EnemyState
     {
         base.DoChecks();
 
-        isPlayerInMinAggroRange = enemy.CheckPlayerInMinAggroRange();
-        isDetectingLedge = enemy.CheckLedge();
-        isDetectingWall = enemy.CheckWall();
-        performCloseRangeAction = enemy.CheckPlayerInCloseRangeAction();
+        performCloseRangeAction = enemy.PlayerInCloseRangeAction;
     }
 }

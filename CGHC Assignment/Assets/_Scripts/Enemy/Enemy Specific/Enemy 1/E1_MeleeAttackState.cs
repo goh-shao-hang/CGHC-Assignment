@@ -32,7 +32,7 @@ public class E1_MeleeAttackState : MeleeAttackState
 
         if (isAnimationFinished)
         {
-            if (isPlayerInMinAggroRange)
+            if (enemy.PlayerInMinAggroRange)
                 stateMachine.ChangeState(enemy1.playerDetectedState);
             else
                 stateMachine.ChangeState(enemy1.lookForPlayerState);
