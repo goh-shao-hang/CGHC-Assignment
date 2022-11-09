@@ -84,7 +84,7 @@ public class PlayerCombatController : MonoBehaviour
 
         foreach (Collider2D collider in detectedObjects)
         {
-            collider.transform.parent.SendMessage("TakeDamage", attackDetails); //SendMessage finds a method in a script without knowing what the script is
+            collider.GetComponent<IDamageable>()?.TakeDamage(attackDetails);
         }
     }
 
