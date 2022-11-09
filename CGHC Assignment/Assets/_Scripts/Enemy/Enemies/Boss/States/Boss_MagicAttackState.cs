@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss_MeleeAttackState : MeleeAttackState
+public class Boss_MagicAttackState : MagicAttackState
 {
     private Boss boss;
 
-    public Boss_MeleeAttackState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, Transform attackPosition, D_MeleeAttackState stateData) : base(entity, stateMachine, animBoolName, attackPosition, stateData)
+    public Boss_MagicAttackState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, Transform attackPosition, D_MagicAttackState stateData) : base(entity, stateMachine, animBoolName, attackPosition, stateData)
     {
         boss = entity as Boss;
     }

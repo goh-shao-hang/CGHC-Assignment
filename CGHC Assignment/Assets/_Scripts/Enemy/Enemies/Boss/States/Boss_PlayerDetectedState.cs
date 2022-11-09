@@ -15,6 +15,23 @@ public class Boss_PlayerDetectedState : PlayerDetectedState
     {
         base.LogicUpdate();
 
-
+        if (performCloseRangeAction)
+        {
+            stateMachine.ChangeState(boss.meleeAttackState);
+        }
+        else if (performLongRangeAction)
+        {
+            //TODO: MAGIC
+        }
+        else if (!enemy.PlayerInMaxAggroRange)
+        {
+            boss.idleState.SetFlipAfterIdle(false);
+            stateMachine.ChangeState(boss.idleState);
+        }
+        else if (enemy.LedgeDetected)
+        {
+            enemy.Flip();
+            stateMachine.ChangeState(boss.moveState);
+        }
     }
 }

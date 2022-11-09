@@ -53,6 +53,11 @@ public class Wolf : Enemy
         }
     }
 
+    protected virtual void TriggerMeleeAttack()
+    {
+        meleeAttackState.TriggerAttack();
+    }
+
     protected virtual void FinishMeleeAttack()
     {
         meleeAttackState.FinishAttack();

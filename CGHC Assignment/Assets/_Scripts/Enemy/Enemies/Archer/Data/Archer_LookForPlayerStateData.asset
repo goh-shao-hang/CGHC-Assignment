@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32bf204a9c320a84aa410bdb161d9346, type: 3}
-  m_Name: Boss_PlayerDetectedStateData
+  m_Script: {fileID: 11500000, guid: b065a7de72e9cda47a889ed98bfd66c6, type: 3}
+  m_Name: Archer_LookForPlayerStateData
   m_EditorClassIdentifier: 
-  closeRangeActionTime: 1
-  longRangeActionTime: 1.5
+  amountOfTurns: 2
+  timeBetweenTurns: 0.75

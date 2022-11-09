@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32bf204a9c320a84aa410bdb161d9346, type: 3}
-  m_Name: Boss_PlayerDetectedStateData
+  m_Script: {fileID: 11500000, guid: 41e9e653aa45ccd4fa1a254fc0e5219f, type: 3}
+  m_Name: Archer_MeleeAttackStateData
   m_EditorClassIdentifier: 
-  closeRangeActionTime: 1
-  longRangeActionTime: 1.5
+  attackRadius: 0.5
+  attackDamage: 10

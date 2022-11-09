@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b21ecfb72d55fe4b8517dabe3d70d00, type: 3}
-  m_Name: Boss_BaseData
+  m_Name: Archer_BaseData
   m_EditorClassIdentifier: 
-  maxHealth: 200
+  maxHealth: 40
   damageHopSpeed: 5
-  wallCheckDistance: 0.5
-  ledgeCheckDistance: 1
+  wallCheckDistance: 0.2
+  ledgeCheckDistance: 0.4
   groundCheckRadius: 0.3
-  minAggroDistance: 3
-  maxAggroDistance: 100
-  closeRangeActionDistance: 1
-  stunResistance: 100
+  minAggroDistance: 6
+  maxAggroDistance: 8
+  closeRangeActionDistance: 1.25
+  stunResistance: 3
   stunRecoveryTime: 2
-  hitParticles: {fileID: 0}
+  hitParticles: {fileID: 1755723725781965047, guid: 2911ec253f4b71c4d87e83d3b8c0e6f4, type: 3}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
