@@ -20,8 +20,8 @@ public class DeadState : EnemyState
     {
         base.Enter();
 
-        GameObject.Instantiate(stateData.deathBloodParticles, enemy.baseGO.transform.position, stateData.deathBloodParticles.transform.rotation); //Gameobject.Instantiate because we are not inheriting from monobehavior
-        GameObject.Instantiate(stateData.deathChunkParticles, enemy.baseGO.transform.position, stateData.deathChunkParticles.transform.rotation);
+        GameObject.Instantiate(stateData.deathBloodParticles, enemy.transform.position, stateData.deathBloodParticles.transform.rotation); //Gameobject.Instantiate because we are not inheriting from monobehavior
+        GameObject.Instantiate(stateData.deathChunkParticles, enemy.transform.position, stateData.deathChunkParticles.transform.rotation);
         enemy.gameObject.SetActive(false);
     }
 

@@ -7,9 +7,6 @@ public class Enemy : Entity, IDamageable
     [Header("Base Data")]
     public D_Enemy enemyData;
 
-    public GameObject baseGO { get; private set; }
-    public AnimationToStateMachine atsm { get; private set; }
-
     [Header("Assignables")]
     [SerializeField] private Transform wallCheck;
     [SerializeField] private Transform ledgeCheck;
@@ -34,10 +31,8 @@ public class Enemy : Entity, IDamageable
     {
         base.Start();
 
-        baseGO = transform.Find("Base").gameObject;
-        rb = baseGO.GetComponent<Rigidbody2D>();
-        anim = baseGO.GetComponent<Animator>();
-        atsm = baseGO.GetComponent<AnimationToStateMachine>();
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
 
         currentHealth = enemyData.maxHealth;
         currentStunResistance = enemyData.stunResistance;
@@ -56,35 +51,17 @@ public class Enemy : Entity, IDamageable
         }
     }
 
-    public virtual bool CheckWall()
-    {
-        return Physics2D.Raycast(wallCheck.position, baseGO.transform.right, enemyData.wallCheckDistance, enemyData.whatIsGround);
-    }
+    public virtual bool WallDetected => Physics2D.Raycast(wallCheck.position, transform.right, enemyData.wallCheckDistance, enemyData.whatIsGround);
 
-    public virtual bool CheckLedge()
-    {
-        return Physics2D.Raycast(ledgeCheck.position, Vector2.down, enemyData.ledgeCheckDistance, enemyData.whatIsGround);
-    }
+    public virtual bool LedgeDetected => !Physics2D.Raycast(ledgeCheck.position, Vector2.down, enemyData.ledgeCheckDistance, enemyData.whatIsGround);
 
-    public virtual bool CheckGround()
-    {
-        return Physics2D.OverlapCircle(groundCheck.position, enemyData.groundCheckRadius, enemyData.whatIsGround);
-    }
+    public virtual bool IsGrounded => Physics2D.OverlapCircle(groundCheck.position, enemyData.groundCheckRadius, enemyData.whatIsGround);
 
-    public virtual bool CheckPlayerInMinAggroRange()
-    {
-        return Physics2D.Raycast(playerCheck.position, baseGO.transform.right, enemyData.minAggroDistance, enemyData.whatIsPlayer);
-    }
+    public virtual bool PlayerInMinAggroRange => Physics2D.Raycast(playerCheck.position, transform.right, enemyData.minAggroDistance, enemyData.whatIsPlayer);
 
-    public virtual bool CheckPlayerInMaxAggroRange()
-    {
-        return Physics2D.OverlapCircle(playerCheck.position, enemyData.maxAggroDistance, enemyData.whatIsPlayer);
-    }
+    public virtual bool PlayerInMaxAggroRange => Physics2D.OverlapCircle(playerCheck.position, enemyData.maxAggroDistance, enemyData.whatIsPlayer);
 
-    public virtual bool CheckPlayerInCloseRangeAction()
-    {
-        return Physics2D.Raycast(playerCheck.position, baseGO.transform.right, enemyData.closeRangeActionDistance, enemyData.whatIsPlayer);
-    }
+    public virtual bool PlayerInCloseRangeAction => Physics2D.Raycast(playerCheck.position, transform.right, enemyData.closeRangeActionDistance, enemyData.whatIsPlayer);
 
     public virtual void TakeDamage(AttackDetails attackDetails)
     {
@@ -94,7 +71,7 @@ public class Enemy : Entity, IDamageable
 
         //Effects
         DamageHop(enemyData.damageHopSpeed);
-        Instantiate(enemyData.hitParticles, baseGO.transform.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
+        Instantiate(enemyData.hitParticles, transform.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
 
         if (currentHealth <= 0)
         {
@@ -102,7 +79,7 @@ public class Enemy : Entity, IDamageable
             return;
         }
 
-        if (attackDetails.position.x > baseGO.transform.position.x) //attack came from right, so knockback towards left
+        if (attackDetails.position.x > transform.position.x) //attack came from right, so knockback towards left
             lastDamageDirection = -1;
         else
             lastDamageDirection = 1;
@@ -124,7 +101,7 @@ public class Enemy : Entity, IDamageable
     public override void Flip()
     {
         base.Flip();
-        baseGO.transform.Rotate(0f, 180f, 0f);
+        transform.Rotate(0f, 180f, 0f);
     }
 
     public virtual void OnDrawGizmos()
