@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Archer_StunState : StunState
 {
-    private Archer enemy2;
+    private Archer archer;
 
     public Archer_StunState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, D_StunState stateData) : base(entity, stateMachine, animBoolName, stateData)
     {
-        enemy2 = entity as Archer;
+        archer = entity as Archer;
     }
 
     public override void DoChecks()
@@ -32,13 +32,13 @@ public class Archer_StunState : StunState
 
         if (isStunTimeOver)
         {
-            if (isPlayerInMinAggroRange)
+            if (enemy.PlayerInMinAggroRange)
             {
-                stateMachine.ChangeState(enemy2.playerDetectedState);
+                stateMachine.ChangeState(archer.playerDetectedState);
             }
             else
             {
-                stateMachine.ChangeState(enemy2.lookForPlayerState);
+                stateMachine.ChangeState(archer.idleState);
             }
         }
     }

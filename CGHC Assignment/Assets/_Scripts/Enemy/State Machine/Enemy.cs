@@ -95,7 +95,7 @@ public class Enemy : Entity, IDamageable
 
     public virtual void DamageHop(float yVelocity)
     {
-        rb.velocity = new Vector2(rb.velocity.x, yVelocity);
+        SetVelocityY(yVelocity);
     }
 
     public override void Flip()

@@ -28,10 +28,5 @@ public class Wolf_PlayerDetectedState : PlayerDetectedState
             wolf.idleState.SetFlipAfterIdle(false);
             stateMachine.ChangeState(wolf.idleState);
         }
-        else if (enemy.LedgeDetected)
-        {
-            enemy.Flip();
-            stateMachine.ChangeState(wolf.moveState);
-        }
     }
 }
