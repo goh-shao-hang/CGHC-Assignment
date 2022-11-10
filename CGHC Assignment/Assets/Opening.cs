@@ -7,7 +7,7 @@ public class Opening : MonoBehaviour
 {
     private void OnEnable()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 }
 

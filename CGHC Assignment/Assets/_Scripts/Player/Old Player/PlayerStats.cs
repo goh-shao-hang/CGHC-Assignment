@@ -24,10 +24,10 @@ public class PlayerStats : MonoBehaviour
     {
         currentHealth -= amount;
 
-        if (currentHealth == 0)
+        if (currentHealth <= 0)
         {
-            SceneManager.LoadScene(2);
             Die();
+            SceneManager.LoadScene(2);
         }
     }
 
