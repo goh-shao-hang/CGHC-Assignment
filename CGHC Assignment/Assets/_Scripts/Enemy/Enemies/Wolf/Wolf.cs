@@ -42,8 +42,6 @@ public class Wolf : Enemy
     protected override void Update()
     {
         base.Update();
-
-        Debug.Log(StateMachine.CurrentState);
     }
 
     public override void TakeDamage(AttackDetails attackDetails)
