@@ -1,9 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class Enemy : Entity, IDamageable
 {
+    //Dependencies
+    private Camera mainCam;
+    private SpriteRenderer sr;
+    private Material originalMat;
+
     [Header("Base Data")]
     public D_Enemy enemyData;
 
@@ -12,6 +18,7 @@ public class Enemy : Entity, IDamageable
     [SerializeField] private Transform ledgeCheck;
     [SerializeField] private Transform playerCheck;
     [SerializeField] private Transform groundCheck;
+    [SerializeField] private Material flashMaterial;
     
     public int lastDamageDirection { get; private set; }
 
@@ -33,6 +40,9 @@ public class Enemy : Entity, IDamageable
 
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        mainCam = Camera.main;
+        sr = GetComponent<SpriteRenderer>();
+        originalMat = sr.material;
 
         currentHealth = enemyData.maxHealth;
         currentStunResistance = enemyData.stunResistance;
@@ -73,9 +83,14 @@ public class Enemy : Entity, IDamageable
         DamageHop(enemyData.damageHopSpeed);
         Instantiate(enemyData.hitParticles, transform.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
 
+        GetComponent<CinemachineImpulseSource>()?.GenerateImpulse(0.25f);
+
+        StartCoroutine(Flash());
+
         if (currentHealth <= 0)
         {
             isDead = true;
+            GetComponent<CinemachineImpulseSource>()?.GenerateImpulse(3f);
             return;
         }
 
@@ -87,6 +102,14 @@ public class Enemy : Entity, IDamageable
         if (currentStunResistance <= 0)
             isStunned = true;
     }
+
+    IEnumerator Flash()
+    {
+        sr.material = flashMaterial;
+        yield return new WaitForSeconds(0.2f);
+        sr.material = originalMat;
+    }
+
     public virtual void ResetStunResistance()
     {
         isStunned = false;

@@ -1,18 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerCombatController : MonoBehaviour, IDamageable
 {
     private Animator anim;
+    private SpriteRenderer sr;
     private PlayerController pc;
     private PlayerStats ps;
+    private CinemachineImpulseSource impulseSource;
 
     public AudioSource audioSource;
 
     [Header("Assignables")]
     [SerializeField] private Transform attack1HitboxPos;
     [SerializeField] private LayerMask whatIsDamageable;
+    [SerializeField] private GameObject playerHitParticles;
+    [SerializeField] private Material flashMaterial;
 
     [SerializeField] private bool combatEnabled;
     [SerializeField] private float inputTimer, comboTimer, attack1Radius, attack1Damage, stunDamageAmount = 1f;
@@ -22,6 +27,7 @@ public class PlayerCombatController : MonoBehaviour, IDamageable
     private float lastInputTime = Mathf.NegativeInfinity; //Always can attack when the game starts
 
     private AttackDetails attackDetails;
+    private Material originalMat;
 
     private void Start()
     {
@@ -30,6 +36,9 @@ public class PlayerCombatController : MonoBehaviour, IDamageable
         anim.SetBool("canAttack", combatEnabled);
         pc = GetComponent<PlayerController>();
         ps = GetComponent<PlayerStats>();
+        impulseSource = GetComponent<CinemachineImpulseSource>();
+        sr = GetComponent<SpriteRenderer>();
+        originalMat = sr.material;
     }
 
     private void Update()
@@ -103,6 +112,8 @@ public class PlayerCombatController : MonoBehaviour, IDamageable
     {
         if (pc.GetDashStatus()) return; //if player is dashing, don't damage them
 
+        StartCoroutine(HitEffect());
+
         ps.DecreaseHealth(attackDetails.damageAmount);
 
         int direction;
@@ -117,6 +128,17 @@ public class PlayerCombatController : MonoBehaviour, IDamageable
             
 
         pc.Knockback(direction);
+    }
+
+    IEnumerator HitEffect()
+    {
+        Time.timeScale = 0f;
+        sr.material = flashMaterial;
+        impulseSource.GenerateImpulse(5f);
+        yield return new WaitForSecondsRealtime(.3f);
+        Instantiate(playerHitParticles, transform.position, Quaternion.identity);
+        Time.timeScale = 1f;
+        sr.material = originalMat;
     }
 
     private void OnDrawGizmos()

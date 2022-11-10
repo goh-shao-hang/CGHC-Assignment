@@ -55,7 +55,7 @@ public class Projectile : MonoBehaviour
 
             if (damageHit)
             {
-                damageHit.transform.GetComponent<PlayerCombatController>()?.TakeDamage(attackDetails);
+                damageHit.transform.GetComponent<IDamageable>()?.TakeDamage(attackDetails);
                 Destroy(gameObject);
             }
             

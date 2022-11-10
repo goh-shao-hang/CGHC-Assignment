@@ -35,7 +35,7 @@ public class PlayerStats : MonoBehaviour
     {
         Instantiate(deathChunkParticle, transform.position, deathChunkParticle.transform.rotation);
         Instantiate(deathBloodParticle, transform.position, deathBloodParticle.transform.rotation);
-        GameManager.Instance.Respawn();
+        GameManager.Instance?.Respawn();
         Destroy(gameObject); 
     }
 }
