@@ -75,6 +75,8 @@ public class PlayerController : MonoBehaviour
     private bool knockback;
     private float knockbackStartTime;
 
+    [SerializeField] private AudioSource jumpSoundEffect;
+    [SerializeField] private AudioSource dashSoundEffect;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -335,6 +337,7 @@ public class PlayerController : MonoBehaviour
     {
         if (canJump)
         {
+            jumpSoundEffect.Play();
             rb.velocity = new Vector2(rb.velocity.x, jumpForce); //Set xspeed to 0 if we want to use air force to move the player in x direction
             jumpsLeft--;
             jumpBufferTimeLeft = 0;
@@ -381,6 +384,7 @@ public class PlayerController : MonoBehaviour
         {
             if (dashTimeLeft > 0 && !isTouchingWall)
             {
+                dashSoundEffect.Play();
                 canMove = false;
                 canFlip = false;
                 rb.velocity = new Vector2(dashSpeed * facingDirection, 0);

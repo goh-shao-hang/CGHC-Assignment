@@ -8,6 +8,8 @@ public class PlayerCombatController : MonoBehaviour
     private PlayerController pc;
     private PlayerStats ps;
 
+    public AudioSource audioSource;
+
     [Header("Assignables")]
     [SerializeField] private Transform attack1HitboxPos;
     [SerializeField] private LayerMask whatIsDamageable;
@@ -23,6 +25,7 @@ public class PlayerCombatController : MonoBehaviour
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
         anim.SetBool("canAttack", combatEnabled);
         pc = GetComponent<PlayerController>();
@@ -52,6 +55,7 @@ public class PlayerCombatController : MonoBehaviour
         {
             if (!isAttacking)
             {
+                audioSource.Play();
                 gotInput = false;
                 isAttacking = true;
                 combo++;

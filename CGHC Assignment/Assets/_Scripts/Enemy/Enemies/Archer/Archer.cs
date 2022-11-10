@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Archer : Enemy
 {
+    public AudioSource AudioSource1;
     public Archer_MoveState moveState { get; private set; }
     public Archer_IdleState idleState { get; private set; }
     public Archer_PlayerDetectedState playerDetectedState { get; private set; }
@@ -50,10 +51,12 @@ public class Archer : Enemy
 
     public override void TakeDamage(AttackDetails attackDetails)
     {
+        AudioSource1 = GetComponent<AudioSource>();
         base.TakeDamage(attackDetails);
 
         if (isDead)
         {
+            AudioSource1.Play();
             StateMachine.ChangeState(deadState);
         }
         else if (isStunned && StateMachine.CurrentState != stunState)
