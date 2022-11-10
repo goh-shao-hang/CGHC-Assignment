@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41e9e653aa45ccd4fa1a254fc0e5219f, type: 3}
-  m_Name: Boss_MeleeAttackStateData
+  m_Script: {fileID: 11500000, guid: 0e77ace44c3436f4aa8e4ccd142c657c, type: 3}
+  m_Name: Boss_StunStateData
   m_EditorClassIdentifier: 
-  attackRadius: 2.5
-  attackDamage: 20
+  stunTime: 3
+  stunKnockbackTime: 0.2
+  stunKnockbackSpeed: 10
+  stunKnockbackAngle: {x: 1, y: 1}

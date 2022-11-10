@@ -52,6 +52,9 @@ public class Archer : Enemy
     {
         base.TakeDamage(attackDetails);
 
+        if (StateMachine.CurrentState == idleState || StateMachine.CurrentState == moveState)
+            StateMachine.ChangeState(playerDetectedState);
+
         if (isDead)
         {
             StateMachine.ChangeState(deadState);
@@ -59,16 +62,6 @@ public class Archer : Enemy
         else if (isStunned && StateMachine.CurrentState != stunState)
         {
             StateMachine.ChangeState(stunState);
-        }
-        else if (PlayerInMinAggroRange)
-        {
-            StateMachine.ChangeState(rangedAttackState);
-        }
-        else if (!PlayerInMinAggroRange&& !isStunned) //If player hits from behind, go to look for player state
-        {
-                idleState.SetFlipAfterIdle(false); //if this is left true, the enemy will flip twice as a result
-                lookForPlayerState.SetTurnImmediately(true);
-                StateMachine.ChangeState(lookForPlayerState);
         }
     }
 

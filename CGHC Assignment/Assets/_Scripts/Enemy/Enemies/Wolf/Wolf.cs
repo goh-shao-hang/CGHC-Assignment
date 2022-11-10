@@ -39,9 +39,19 @@ public class Wolf : Enemy
         StateMachine.Inititalize(moveState);
     }
 
+    protected override void Update()
+    {
+        base.Update();
+
+        Debug.Log(StateMachine.CurrentState);
+    }
+
     public override void TakeDamage(AttackDetails attackDetails)
     {
         base.TakeDamage(attackDetails);
+
+        if (StateMachine.CurrentState == idleState || StateMachine.CurrentState == moveState)
+            StateMachine.ChangeState(playerDetectedState);
 
         if (isDead)
         {

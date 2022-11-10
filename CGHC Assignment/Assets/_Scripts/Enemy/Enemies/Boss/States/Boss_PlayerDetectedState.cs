@@ -21,7 +21,14 @@ public class Boss_PlayerDetectedState : PlayerDetectedState
         }
         else if (performLongRangeAction)
         {
-            //TODO: MAGIC
+            if (Time.time >= boss.fadeState.startTime + boss.FadeStateData.fadeCooldown)
+            {
+                stateMachine.ChangeState(boss.fadeState);
+            }
+            else
+            {
+                stateMachine.ChangeState(boss.magicAttackState);
+            }
         }
         else if (!enemy.PlayerInMaxAggroRange)
         {

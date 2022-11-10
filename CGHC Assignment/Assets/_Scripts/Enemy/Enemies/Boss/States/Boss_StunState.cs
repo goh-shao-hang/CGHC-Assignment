@@ -11,5 +11,22 @@ public class Boss_StunState : StunState
         boss = entity as Boss;
     }
 
-    
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+
+        if (isStunTimeOver)
+        {
+            if (enemy.PlayerInMaxAggroRange)
+            {
+                stateMachine.ChangeState(boss.playerDetectedState);
+            }
+            else
+            {
+                stateMachine.ChangeState(boss.idleState);
+            }
+        }
+    }
+
+
 }

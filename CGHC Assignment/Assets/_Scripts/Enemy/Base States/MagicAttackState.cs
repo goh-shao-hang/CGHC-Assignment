@@ -31,9 +31,9 @@ public class MagicAttackState : AttackState
     {
         base.TriggerAttack();
 
-        magicAttack = GameObject.Instantiate(stateData.magicAttack, player.position, Quaternion.identity);
+        magicAttack = Object.Instantiate(stateData.magicAttack, player.position + (Vector3)stateData.spawnOffset, Quaternion.identity);
         bossMagic = magicAttack.GetComponent<BossMagic>();
-        //BossMagic.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, stateData.projectileDamage);
+        bossMagic.SetDamage(stateData.magicDamage);
     }
 
     public override void FinishAttack()

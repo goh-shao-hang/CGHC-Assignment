@@ -15,13 +15,23 @@ public class BossMagic : MonoBehaviour
         hitbox = GetComponent<BoxCollider2D>();
     }
 
+    private void Update()
+    {
+        attackDetails.position = transform.position;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("player") && !damaged)
+        if (other.CompareTag("Player") && !damaged)
         {
             damaged = true;
             other.GetComponent<IDamageable>()?.TakeDamage(attackDetails);
         }  
+    }
+
+    public void SetDamage(float damage)
+    {
+        attackDetails.damageAmount = damage;
     }
 
     private void ActivateHitbox() => hitbox.enabled = true;
@@ -30,6 +40,7 @@ public class BossMagic : MonoBehaviour
 
     private void FinishMagicAttack()
     {
+        damaged = false;
         Destroy(gameObject);
     }
 }

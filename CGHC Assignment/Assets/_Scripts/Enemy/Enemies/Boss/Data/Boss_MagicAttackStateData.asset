@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41e9e653aa45ccd4fa1a254fc0e5219f, type: 3}
-  m_Name: Boss_MeleeAttackStateData
+  m_Script: {fileID: 11500000, guid: 8d0eb32575847254089e977a9c60aee5, type: 3}
+  m_Name: Boss_MagicAttackStateData
   m_EditorClassIdentifier: 
-  attackRadius: 2.5
-  attackDamage: 20
+  magicAttack: {fileID: 6512474983227042180, guid: 752087f2e2e817a4f8bb314de8d29b99, type: 3}
+  magicDamage: 15
+  spawnOffset: {x: 0, y: 3}
