@@ -12,7 +12,7 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] public float maxHealth;
-
+    [SerializeField] private AudioSource attackedSoundEffect;
     public float currentHealth;
 
     private void Start()
@@ -23,7 +23,7 @@ public class PlayerStats : MonoBehaviour
     public void DecreaseHealth(float amount)
     {
         currentHealth -= amount;
-
+        attackedSoundEffect.Play();
         if (currentHealth <= 0)
         {
             Die();
