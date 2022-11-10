@@ -11,11 +11,11 @@ public class GameOver : MonoBehaviour
     }
     public void RetryGame()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
     public void MainMenu()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
     public void QuitGame()
     {

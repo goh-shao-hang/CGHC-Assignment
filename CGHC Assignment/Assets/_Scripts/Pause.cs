@@ -49,7 +49,7 @@ public class Pause : MonoBehaviour
     public void GoToMainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
     private void UnlockMouse()
     {
