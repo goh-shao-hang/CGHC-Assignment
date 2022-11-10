@@ -364,8 +364,8 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'A king named Leon from the kingdom of Samrose has tasked a bounty: Enter
-    the town of Exodus and defeat all the enemies present and slay the master behind
-    it.'
+    the abandoned building turned lair of the town Exodus and defeat all the enemies
+    present and slay the master behind it.'
 --- !u!222 &1072687573
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -864,7 +864,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ab56726d564fc9d40a8b4813bdd8a4a5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f33fb33a51013b44295e0140949122bc, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.146
   m_Pitch: 1
