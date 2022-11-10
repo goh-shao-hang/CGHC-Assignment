@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:CGHC Assignment/Assets/Y2Mate.is - Decisive Battle-V6GO9g3dB9U-128k-1658164225935.mp3.meta
+guid: 701e7e51b48246149bbb1a0d7d6161ac
+========
+guid: e56188b1340735242852999b22d4375e
+>>>>>>>> parent of d475717 (changes):CGHC Assignment/Assets/space-120280.mp3.meta
+AudioImporter:
+  externalObjects: {}
+  serializedVersion: 6
+  defaultSettings:
+    loadType: 0
+    sampleRateSetting: 0
+    sampleRateOverride: 44100
+    compressionFormat: 1
+    quality: 1
+    conversionMode: 0
+  platformSettingOverrides: {}
+  forceToMono: 0
+  normalize: 1
+  preloadAudioData: 1
+  loadInBackground: 0
+  ambisonic: 0
+  3D: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
