@@ -59650,6 +59650,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wolf
       objectReference: {fileID: 0}
+    - target: {fileID: 3791116818577458827, guid: 56befe6ab541b114da4d68d9222d18c0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3791116818577458830, guid: 56befe6ab541b114da4d68d9222d18c0, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -70429,6 +70433,7 @@ MonoBehaviour:
   ledgeCheck: {fileID: 0}
   playerCheck: {fileID: 0}
   groundCheck: {fileID: 0}
+  flashMaterial: {fileID: 0}
   idleStateData: {fileID: 11400000, guid: c4cf9320a23b4f447a55dea578932878, type: 2}
   moveStateData: {fileID: 11400000, guid: 2375be0d099921f499702eb08c56e451, type: 2}
   playerDetectedStateData: {fileID: 11400000, guid: de51f3c8656237145a697a416b148d02, type: 2}
