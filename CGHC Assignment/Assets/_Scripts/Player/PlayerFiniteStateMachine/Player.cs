@@ -27,13 +27,11 @@ public class Player : Entity
     public PlayerInAirState InAirState { get; private set; }
     public PlayerLandState LandState { get; private set; }
     public PlayerWallSlideState WallSlideState { get; private set; }
-    public PlayerWallGrabState WallGrabState { get; private set; }
-    public PlayerWallClimbState WallClimbState { get; private set; }
+
     public PlayerWallJumpState WallJumpState { get; private set; }
     public PlayerLedgeClimbState LedgeClimbState { get; private set; }
     public PlayerDashState DashState { get; private set; }
-    public PlayerCrouchIdleState CrouchIdleState { get; private set; }
-    public PlayerCrouchMoveState CrouchMoveState { get; private set; }
+
     #endregion
 
     #region Unity Callback Functions
@@ -47,13 +45,9 @@ public class Player : Entity
         InAirState = new PlayerInAirState(this, StateMachine, "inAir", playerData);
         LandState = new PlayerLandState(this, StateMachine, "land", playerData);
         WallSlideState = new PlayerWallSlideState(this, StateMachine, "wallSlide", playerData);
-        WallGrabState = new PlayerWallGrabState(this, StateMachine, "wallGrab", playerData);
-        WallClimbState = new PlayerWallClimbState(this, StateMachine, "wallClimb", playerData);
         WallJumpState = new PlayerWallJumpState(this, StateMachine, "inAir", playerData);
         LedgeClimbState = new PlayerLedgeClimbState(this, StateMachine, "ledgeClimbState", playerData);
         DashState = new PlayerDashState(this, StateMachine, "inAir", playerData);
-        CrouchIdleState = new PlayerCrouchIdleState(this, StateMachine, "crouchIdle", playerData);
-        CrouchMoveState = new PlayerCrouchMoveState(this, StateMachine, "crouchMove", playerData);
     }
 
     protected override void Start()

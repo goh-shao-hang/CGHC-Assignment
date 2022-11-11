@@ -55,14 +55,7 @@ public class PlayerLedgeClimbState : PlayerState
 
         if (isAnimationFinished)
         {
-            if (isTouchingCeiling)
-            {
-                stateMachine.ChangeState(player.CrouchIdleState); //Automatically crouches after a ledge climb if there is not enough space to stand
-            }
-            else
-            {
-                stateMachine.ChangeState(player.IdleState);
-            }
+            stateMachine.ChangeState(player.IdleState);
         }
         else
         {

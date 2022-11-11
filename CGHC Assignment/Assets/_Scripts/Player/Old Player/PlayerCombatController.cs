@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.Rendering;
 
 public class PlayerCombatController : MonoBehaviour, IDamageable
 {
@@ -10,6 +11,7 @@ public class PlayerCombatController : MonoBehaviour, IDamageable
     private PlayerController pc;
     private PlayerStats ps;
     private CinemachineImpulseSource impulseSource;
+    private Volume volume;
 
     public AudioSource audioSource;
 
@@ -18,6 +20,7 @@ public class PlayerCombatController : MonoBehaviour, IDamageable
     [SerializeField] private LayerMask whatIsDamageable;
     [SerializeField] private GameObject playerHitParticles;
     [SerializeField] private Material flashMaterial;
+    [SerializeField] private Volume CAVolume;
 
     [SerializeField] private bool combatEnabled;
     [SerializeField] private float inputTimer, comboTimer, attack1Radius, attack1Damage, stunDamageAmount = 1f;
@@ -38,6 +41,7 @@ public class PlayerCombatController : MonoBehaviour, IDamageable
         ps = GetComponent<PlayerStats>();
         impulseSource = GetComponent<CinemachineImpulseSource>();
         sr = GetComponent<SpriteRenderer>();
+        CAVolume.enabled = false;
         originalMat = sr.material;
     }
 
@@ -135,10 +139,12 @@ public class PlayerCombatController : MonoBehaviour, IDamageable
         Time.timeScale = 0f;
         sr.material = flashMaterial;
         impulseSource.GenerateImpulse(5f);
+        CAVolume.enabled = true;
         yield return new WaitForSecondsRealtime(.3f);
         Instantiate(playerHitParticles, transform.position, Quaternion.identity);
         Time.timeScale = 1f;
         sr.material = originalMat;
+        CAVolume.enabled = false;
     }
 
     private void OnDrawGizmos()

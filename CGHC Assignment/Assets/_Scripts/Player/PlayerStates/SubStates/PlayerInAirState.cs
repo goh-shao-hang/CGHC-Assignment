@@ -86,6 +86,7 @@ public class PlayerInAirState : PlayerState //Not a superstate but is not part o
         }
         else if (isTouchingWall && !isTouchingLedge && !isGrounded) //Ledge climb
         {
+
             stateMachine.ChangeState(player.LedgeClimbState);
         }
         else if (jumpInput && (isTouchingWall || isTouchingWallBack || isInWallJumpCoyoteTime)) //Wall jump
@@ -98,10 +99,6 @@ public class PlayerInAirState : PlayerState //Not a superstate but is not part o
         else if (jumpInput && player.JumpState.CanJump) //Jumping in air (double jump etc.)
         {
             stateMachine.ChangeState(player.JumpState);
-        }
-        else if (isTouchingWall && grabInput && isTouchingLedge)
-        {
-            stateMachine.ChangeState(player.WallGrabState);
         }
         else if (isTouchingWall && xInput == player.FacingDirection && player.CurrentVelocity.y <= 0) //If player input towards wall, wall slide (also make sure player is falling before entering wall slide)
         {

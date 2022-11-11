@@ -15,8 +15,6 @@ public class Wolf_PlayerDetectedState : PlayerDetectedState
     {
         base.LogicUpdate();
 
-        Debug.Log(performCloseRangeAction);
-
         if (performCloseRangeAction)
         {
             stateMachine.ChangeState(wolf.meleeAttackState);
