@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Boss : Enemy
 {
@@ -56,11 +57,17 @@ public class Boss : Enemy
         if (isDead)
         {
             StateMachine.ChangeState(deadState);
+            if (gameObject.name == "Boss")
+                Invoke(nameof(BossDeath), 5f);
         }
         else if (isStunned && StateMachine.CurrentState != stunState)
         {
             StateMachine.ChangeState(stunState);
         }
+    }
+    public void BossDeath()
+    {
+        SceneManager.LoadScene(4);
     }
 
     public void TriggerMeleeAttack() => meleeAttackState.TriggerAttack();
@@ -82,4 +89,6 @@ public class Boss : Enemy
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(meleeAttackPosition.position, meleeAttackStateData.attackRadius);
     }
+
+
 }
